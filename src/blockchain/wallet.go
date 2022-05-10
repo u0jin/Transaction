@@ -32,7 +32,6 @@ func NewWallet() *Wallet {
 		log.Panic(err)
 	}
 	pubKey := append(privKey.X.Bytes(), privKey.Y.Bytes()...)
-
 	return &Wallet{privKey, pubKey}
 }
 
@@ -40,7 +39,6 @@ func NewWallet() *Wallet {
 // 주소는 개인키로부터 도출된다.
 
 // 주소 생성 함수
-
 func (w *Wallet) GetAddress() string {
 	publicRIPEMD160 := HashPubKey(w.pubKey)
 	// 공개키를 더블 해싱하여 SHA256,RIPEMD160를 각각 해주고
@@ -68,7 +66,7 @@ func HashPubKey(pubKey []byte) []byte {
 
 func main() {
 	print("지갑주소: ")
-	println(NewWallet)
+	println(NewWallet().GetAddress())
 	print("해시키: ")
 	println(HashPubKey)
 }
